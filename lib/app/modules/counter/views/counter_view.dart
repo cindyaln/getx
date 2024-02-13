@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -17,20 +18,38 @@ class CounterView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Obx(
-         () => Text("Count: ${controller.count}"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+               Obx(
+         () => Text(
+          "Count: ${controller.count}",
+          style: TextStyle(
+            fontSize: controller.count.toDouble(),
+            ),
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.increment();
-        },
-        child: Icon(Icons.add),
-      ),
+        SizedBox(height: 24),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                controller.decrement();
+              },
+              child: Icon(Icons.remove),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                controller.increment();
+              },
+              child: Icon(Icons.add),
+            )
+          ],
+        )
+      ],
+    )
+  ),
     );
   }
-
-  
-
-
 }
